@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelio — Business Dashboard</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ════════════ SIDEBAR ════════════ -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <div class="brand-mark">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="9" fill="url(#bgrad)"/>
+          <path d="M10 10h16M10 18h10M10 26v-16" stroke="#0d0f14" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="bgrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#d4b578"/>
+              <stop offset="1" stop-color="#c8a96e"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="wordmark">Freelio</div>
+        <div class="tagline">Business Suite</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <div class="nav-group-label">Overview</div>
+
+      <div class="nav-item active" data-page="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+        Dashboard
+      </div>
+
+      <div class="nav-item" data-page="analytics">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        Analytics
+      </div>
+
+      <div class="nav-group-label">Work</div>
+
+      <div class="nav-item" data-page="projects">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+        </svg>
+        Projects
+        <span class="nav-badge soft">8</span>
+      </div>
+
+      <div class="nav-item" data-page="clients">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Clients
+      </div>
+
+      <div class="nav-group-label">Finance</div>
+
+      <div class="nav-item" data-page="invoices">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
+        </svg>
+        Invoices
+        <span class="nav-badge">2</span>
+      </div>
+
+      <div class="nav-item" data-page="payments">
+        <svg class="nav-icon" viewBox="0 0 24 24" stroke-width="1.8">
+          <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+        </svg>
+        Payments
+      </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="name">Jane Doe</div>
+          <div class="role">Freelancer</div>
+        </div>
+        <div class="online-dot"></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ════════════ MAIN ════════════ -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="breadcrumb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/>
+        </svg>
+        Freelio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px;opacity:.3">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+        <span class="crumb-active" id="bc">Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-ghost" onclick="alert('Exporting report…')">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export
+        </button>
+        <button class="btn btn-primary" id="topbar-cta">
+          <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          New Invoice
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: DASHBOARD ══ -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Good morning, Jane</div>
+          <div class="page-subtitle">Tuesday, March 10, 2026 · Q1 Overview</div>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card gold">
+          <div class="kpi-icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="kpi-label">Total Earnings</div>
+          <div class="kpi-value">$12,500</div>
+          <div class="kpi-trend up">
+            <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>
+            18% vs last month
+          </div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div class="kpi-label">Total Clients</div>
+          <div class="kpi-value">15</div>
+          <div class="kpi-trend up">
+            <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>
+            3 new this month
+          </div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <div class="kpi-label">Active Projects</div>
+          <div class="kpi-value">8</div>
+          <div class="kpi-trend neutral">
+            <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M5 12h14"/></svg>
+            On track
+          </div>
+        </div>
+        <div class="kpi-card red">
+          <div class="kpi-icon-box">
+            <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="kpi-label">Pending Payments</div>
+          <div class="kpi-value">$2,300</div>
+          <div class="kpi-trend down">
+            <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M17 7l-10 10M7 7h10v10"/></svg>
+            2 invoices due
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Revenue Overview</div>
+            <div class="card-action" onclick="navigate('analytics')">Full Analytics <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+          </div>
+          <canvas id="earningsChart"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Client Breakdown</div>
+            <div class="card-action" onclick="navigate('clients')">Manage <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+          </div>
+          <canvas id="clientChart"></canvas>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Recent Projects</div>
+            <div class="card-action" onclick="navigate('projects')">All Projects <svg viewBox="0 0 24 24" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+          </div>
+          <table>
+            <thead><tr><th>Project</th><th>Status</th><th>Deadline</th><th>Progress</th></tr></thead>
+            <tbody>
+              <tr><td>Website Design</td><td><span class="badge progress">In Progress</span></td><td>20 Mar</td><td><div class="progress-bar"><div class="progress-fill blue" style="width:60%"></div></div></td></tr>
+              <tr><td>Logo Design</td><td><span class="badge completed">Completed</span></td><td>10 Mar</td><td><div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div></td></tr>
+              <tr><td>SEO Optimization</td><td><span class="badge pending">Pending</span></td><td>25 Mar</td><td><div class="progress-bar"><div class="progress-fill gold" style="width:20%"></div></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Recent Activity</div></div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="act-icon green"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+              <div><div class="activity-text">Payment received from <strong>ABC Ltd</strong> — $500</div><div class="activity-time">Today, 10:42 AM</div></div>
+            </li>
+            <li class="activity-item">
+              <div class="act-icon blue"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M5 13l4 4L19 7"/></svg></div>
+              <div><div class="activity-text"><strong>Website Redesign</strong> marked completed</div><div class="activity-time">Yesterday, 3:15 PM</div></div>
+            </li>
+            <li class="activity-item">
+              <div class="act-icon purple"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg></div>
+              <div><div class="activity-text">New client onboarded: <strong>XYZ Corp</strong></div><div class="activity-time">Mar 8, 11:00 AM</div></div>
+            </li>
+            <li class="activity-item">
+              <div class="act-icon gold"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+              <div><div class="activity-text"><strong>SEO Optimization</strong> deadline in 15 days</div><div class="activity-time">Mar 7, 9:00 AM</div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: ANALYTICS ══ -->
+    <div class="page" id="page-analytics">
+      <div class="page-header">
+        <div><div class="page-title">Analytics</div><div class="page-subtitle">Performance insights — Q1 2026</div></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card gold">
+          <div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+          <div class="kpi-label">Avg Monthly Revenue</div><div class="kpi-value">$2,083</div>
+          <div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>12%</div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <div class="kpi-label">Conversion Rate</div><div class="kpi-value">68%</div>
+          <div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>5% this month</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+          <div class="kpi-label">Avg Project Value</div><div class="kpi-value">$833</div>
+          <div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>from $720</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="kpi-label">Billable Hours</div><div class="kpi-value">142h</div>
+          <div class="kpi-trend neutral"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M5 12h14"/></svg>This month</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-header"><div class="card-title">Revenue vs Expenses</div></div><canvas id="analyticsRevenue"></canvas></div>
+        <div class="card"><div class="card-header"><div class="card-title">Project Status Distribution</div></div><canvas id="analyticsStatus"></canvas></div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Top Revenue Sources</div></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--gold)" viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>Web Design</span><span class="stat-row-value" style="color:var(--gold)">$4,800</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--blue)" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>Logo & Branding</span><span class="stat-row-value" style="color:var(--blue)">$3,200</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--green)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>SEO Services</span><span class="stat-row-value" style="color:var(--green)">$2,500</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--purple)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>Consulting</span><span class="stat-row-value" style="color:var(--purple)">$2,000</span></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Client Acquisition</div></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--green)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Referrals</span><span class="stat-row-value">7 clients</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--blue)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</span><span class="stat-row-value">4 clients</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--gold)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Portfolio Site</span><span class="stat-row-value">3 clients</span></div>
+          <div class="stat-row"><span class="stat-row-label"><svg stroke="var(--red)" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Cold Outreach</span><span class="stat-row-value">1 client</span></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Q1 Goals Progress</div></div>
+          <div style="margin-bottom:15px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px"><span>Revenue Goal</span><span style="color:var(--gold)">$12.5k / $15k</span></div><div class="progress-bar"><div class="progress-fill gold" style="width:83%"></div></div></div>
+          <div style="margin-bottom:15px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px"><span>Client Goal</span><span style="color:var(--blue)">15 / 20</span></div><div class="progress-bar"><div class="progress-fill blue" style="width:75%"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px"><span>Projects Goal</span><span style="color:var(--green)">8 / 10</span></div><div class="progress-bar"><div class="progress-fill green" style="width:80%"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: PROJECTS ══ -->
+    <div class="page" id="page-projects">
+      <div class="page-header">
+        <div><div class="page-title">Projects</div><div class="page-subtitle">8 active projects across 6 clients</div></div>
+        <button class="btn btn-primary" onclick="openModal('modal-newproject')">
+          <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>New Project
+        </button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card blue"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="kpi-label">In Progress</div><div class="kpi-value">4</div></div>
+        <div class="kpi-card gold"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z"/></svg></div><div class="kpi-label">Pending</div><div class="kpi-value">2</div></div>
+        <div class="kpi-card green"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="kpi-label">Completed</div><div class="kpi-value">2</div></div>
+        <div class="kpi-card red"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div><div class="kpi-label">Overdue</div><div class="kpi-value">0</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">All Projects</div></div>
+        <table>
+          <thead><tr><th>Project Name</th><th>Client</th><th>Status</th><th>Deadline</th><th>Value</th><th>Progress</th></tr></thead>
+          <tbody>
+            <tr><td>Website Design</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td><span class="badge progress">In Progress</span></td><td>20 Mar 2026</td><td style="color:var(--gold);font-weight:600">$1,200</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill blue" style="width:60%"></div></div></td></tr>
+            <tr><td>Logo Design</td><td><span class="client-chip"><span class="client-logo xyz"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span>XYZ Corp</span></td><td><span class="badge completed">Completed</span></td><td>10 Mar 2026</td><td style="color:var(--gold);font-weight:600">$500</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill green" style="width:100%"></div></div></td></tr>
+            <tr><td>SEO Optimization</td><td><span class="client-chip"><span class="client-logo tech"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>TechSoft</span></td><td><span class="badge pending">Pending</span></td><td>25 Mar 2026</td><td style="color:var(--gold);font-weight:600">$800</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill gold" style="width:20%"></div></div></td></tr>
+            <tr><td>Mobile App UI</td><td><span class="client-chip"><span class="client-logo startup"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>StartupX</span></td><td><span class="badge progress">In Progress</span></td><td>5 Apr 2026</td><td style="color:var(--gold);font-weight:600">$2,400</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill blue" style="width:45%"></div></div></td></tr>
+            <tr><td>Brand Identity</td><td><span class="client-chip"><span class="client-logo green"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>GreenLeaf</span></td><td><span class="badge progress">In Progress</span></td><td>15 Apr 2026</td><td style="color:var(--gold);font-weight:600">$1,800</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill blue" style="width:35%"></div></div></td></tr>
+            <tr><td>E-commerce Setup</td><td><span class="client-chip"><span class="client-logo shop"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></span>ShopNow</span></td><td><span class="badge progress">In Progress</span></td><td>12 Apr 2026</td><td style="color:var(--gold);font-weight:600">$3,100</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill blue" style="width:70%"></div></div></td></tr>
+            <tr><td>Dashboard Redesign</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td><span class="badge completed">Completed</span></td><td>1 Mar 2026</td><td style="color:var(--gold);font-weight:600">$1,750</td><td><div class="progress-bar" style="width:120px"><div class="progress-fill green" style="width:100%"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: CLIENTS ══ -->
+    <div class="page" id="page-clients">
+      <div class="page-header">
+        <div><div class="page-title">Clients</div><div class="page-subtitle">15 total clients · 10 active</div></div>
+        <button class="btn btn-primary" onclick="openModal('modal-newclient')">
+          <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>Add Client
+        </button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card blue"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div class="kpi-label">Active Clients</div><div class="kpi-value">10</div></div>
+        <div class="kpi-card green"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg></div><div class="kpi-label">New This Month</div><div class="kpi-value">3</div></div>
+        <div class="kpi-card gold"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="kpi-label">Avg Projects / Client</div><div class="kpi-value">1.8</div></div>
+        <div class="kpi-card purple"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div><div class="kpi-label">Retention Rate</div><div class="kpi-value">87%</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Client Directory</div></div>
+        <table>
+          <thead><tr><th>Client</th><th>Industry</th><th>Projects</th><th>Total Paid</th><th>Status</th><th>Since</th></tr></thead>
+          <tbody>
+            <tr><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span><strong>ABC Ltd</strong></span></td><td>Technology</td><td>3</td><td style="color:var(--green);font-weight:600">$4,250</td><td><span class="badge active-b">Active</span></td><td style="color:var(--muted)">Jan 2025</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo xyz"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span><strong>XYZ Corp</strong></span></td><td>Marketing</td><td>2</td><td style="color:var(--green);font-weight:600">$1,800</td><td><span class="badge active-b">Active</span></td><td style="color:var(--muted)">Mar 2025</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo tech"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span><strong>TechSoft</strong></span></td><td>Software</td><td>2</td><td style="color:var(--green);font-weight:600">$2,300</td><td><span class="badge pending">Pending</span></td><td style="color:var(--muted)">Jun 2025</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo startup"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span><strong>StartupX</strong></span></td><td>Finance</td><td>1</td><td style="color:var(--green);font-weight:600">$0</td><td><span class="badge new">New</span></td><td style="color:var(--muted)">Feb 2026</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo green"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><strong>GreenLeaf</strong></span></td><td>Retail</td><td>1</td><td style="color:var(--green);font-weight:600">$900</td><td><span class="badge active-b">Active</span></td><td style="color:var(--muted)">Oct 2025</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo media"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M15 10l4.553-2.069A1 1 0 0121 8.847v6.306a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></span><strong>MediaCo</strong></span></td><td>Media</td><td>1</td><td style="color:var(--green);font-weight:600">$0</td><td><span class="badge new">New</span></td><td style="color:var(--muted)">Mar 2026</td></tr>
+            <tr><td><span class="client-chip"><span class="client-logo shop"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></span><strong>ShopNow</strong></span></td><td>E-commerce</td><td>1</td><td style="color:var(--green);font-weight:600">$1,550</td><td><span class="badge active-b">Active</span></td><td style="color:var(--muted)">Sep 2025</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: INVOICES ══ -->
+    <div class="page" id="page-invoices">
+      <div class="page-header">
+        <div><div class="page-title">Invoices</div><div class="page-subtitle">Manage and track all invoices</div></div>
+        <button class="btn btn-primary" onclick="openModal('modal-newinvoice')">
+          <svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>New Invoice
+        </button>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card gold"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg></div><div class="kpi-label">Total Invoiced</div><div class="kpi-value">$14,800</div></div>
+        <div class="kpi-card green"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="kpi-label">Paid</div><div class="kpi-value">$12,500</div></div>
+        <div class="kpi-card blue"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="kpi-label">Pending</div><div class="kpi-value">$1,600</div></div>
+        <div class="kpi-card red"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div><div class="kpi-label">Overdue</div><div class="kpi-value">$700</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">All Invoices</div></div>
+        <table>
+          <thead><tr><th>Invoice #</th><th>Client</th><th>Project</th><th>Amount</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-101</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td>Website Design</td><td style="color:var(--gold);font-weight:600">$500</td><td>1 Mar</td><td>15 Mar</td><td><span class="badge paid">Paid</span></td></tr>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-102</td><td><span class="client-chip"><span class="client-logo xyz"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span>XYZ Corp</span></td><td>Logo Design</td><td style="color:var(--gold);font-weight:600">$300</td><td>5 Mar</td><td>20 Mar</td><td><span class="badge pending">Pending</span></td></tr>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-103</td><td><span class="client-chip"><span class="client-logo tech"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>TechSoft</span></td><td>SEO Optimization</td><td style="color:var(--gold);font-weight:600">$700</td><td>28 Feb</td><td>7 Mar</td><td><span class="badge overdue">Overdue</span></td></tr>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-104</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td>Dashboard Redesign</td><td style="color:var(--gold);font-weight:600">$1,750</td><td>1 Feb</td><td>15 Feb</td><td><span class="badge paid">Paid</span></td></tr>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-105</td><td><span class="client-chip"><span class="client-logo shop"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></span>ShopNow</span></td><td>E-commerce Setup</td><td style="color:var(--gold);font-weight:600">$1,550</td><td>15 Feb</td><td>1 Mar</td><td><span class="badge paid">Paid</span></td></tr>
+            <tr><td style="color:var(--muted);font-size:12px;font-weight:500">INV-106</td><td><span class="client-chip"><span class="client-logo green"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>GreenLeaf</span></td><td>Brand Identity</td><td style="color:var(--gold);font-weight:600">$900</td><td>10 Mar</td><td>25 Mar</td><td><span class="badge pending">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PAGE: PAYMENTS ══ -->
+    <div class="page" id="page-payments">
+      <div class="page-header">
+        <div><div class="page-title">Payments</div><div class="page-subtitle">All transactions and payment history</div></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card green"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></div><div class="kpi-label">Total Received</div><div class="kpi-value">$12,500</div><div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>This quarter</div></div>
+        <div class="kpi-card blue"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="kpi-label">This Month</div><div class="kpi-value">$3,000</div><div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>15% MoM</div></div>
+        <div class="kpi-card gold"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="kpi-label">Avg Payment Time</div><div class="kpi-value">8 days</div><div class="kpi-trend neutral"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M5 12h14"/></svg>Industry avg 14d</div></div>
+        <div class="kpi-card purple"><div class="kpi-icon-box"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="kpi-label">Recurring Revenue</div><div class="kpi-value">$1,200</div><div class="kpi-trend up"><svg viewBox="0 0 24 24" stroke-width="2.2"><path d="M7 17l10-10M17 7H7v10"/></svg>Monthly</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Transaction History</div></div>
+          <table>
+            <thead><tr><th>Date</th><th>Client</th><th>Method</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>10 Mar</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td style="color:var(--muted)">Bank Transfer</td><td style="color:var(--green);font-weight:600">+$500</td></tr>
+              <tr><td>8 Mar</td><td><span class="client-chip"><span class="client-logo shop"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></span>ShopNow</span></td><td style="color:var(--muted)">PayPal</td><td style="color:var(--green);font-weight:600">+$1,550</td></tr>
+              <tr><td>5 Mar</td><td><span class="client-chip"><span class="client-logo green"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>GreenLeaf</span></td><td style="color:var(--muted)">Stripe</td><td style="color:var(--green);font-weight:600">+$900</td></tr>
+              <tr><td>1 Mar</td><td><span class="client-chip"><span class="client-logo abc"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>ABC Ltd</span></td><td style="color:var(--muted)">Bank Transfer</td><td style="color:var(--green);font-weight:600">+$1,750</td></tr>
+              <tr><td>20 Feb</td><td><span class="client-chip"><span class="client-logo tech"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>TechSoft</span></td><td style="color:var(--muted)">Stripe</td><td style="color:var(--green);font-weight:600">+$1,200</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Payment Methods</div></div>
+          <canvas id="paymentChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ════════════ MODALS ════════════ -->
+<div class="modal-overlay" id="modal-newinvoice">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Invoice</div>
+      <button class="modal-close" onclick="closeModal('modal-newinvoice')"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Client</label><select class="form-select"><option>ABC Ltd</option><option>XYZ Corp</option><option>TechSoft</option><option>StartupX</option></select></div>
+      <div class="form-group"><label class="form-label">Project</label><select class="form-select"><option>Website Design</option><option>Logo Design</option><option>SEO Optimization</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Amount ($)</label><input class="form-input" type="number" placeholder="0.00"></div>
+      <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" type="date"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Optional notes…"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-newinvoice')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('modal-newinvoice')">Create Invoice</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-newproject">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">New Project</div>
+      <button class="modal-close" onclick="closeModal('modal-newproject')"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="form-group"><label class="form-label">Project Name</label><input class="form-input" placeholder="e.g. Brand Identity Redesign"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Client</label><select class="form-select"><option>ABC Ltd</option><option>XYZ Corp</option><option>TechSoft</option></select></div>
+      <div class="form-group"><label class="form-label">Value ($)</label><input class="form-input" type="number" placeholder="0.00"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Start Date</label><input class="form-input" type="date"></div>
+      <div class="form-group"><label class="form-label">Deadline</label><input class="form-input" type="date"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-newproject')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('modal-newproject')">Add Project</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-newclient">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add Client</div>
+      <button class="modal-close" onclick="closeModal('modal-newclient')"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Company Name</label><input class="form-input" placeholder="e.g. Acme Corp"></div>
+      <div class="form-group"><label class="form-label">Industry</label><select class="form-select"><option>Technology</option><option>Marketing</option><option>Finance</option><option>Retail</option><option>Media</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">Contact Email</label><input class="form-input" type="email" placeholder="contact@company.com"></div>
+    <div class="form-group"><label class="form-label">Phone</label><input class="form-input" placeholder="+1 (555) 000-0000"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-newclient')">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal('modal-newclient')">Add Client</button>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="app.js"></script>
+
+</body>
+</html>
